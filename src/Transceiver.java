@@ -13,7 +13,7 @@ public class Transceiver {
         lenOfKey = (int) key.length();
         generateData();
         generateDataWithKey();
-        division();
+        //division();
     }
 
     private void generateData() {
@@ -22,7 +22,7 @@ public class Transceiver {
         //long randomData = ThreadLocalRandom.current().nextLong(Long.parseLong(key, 2), 100000 + 1);
         //data = Long.toBinaryString(randomData);
         data = "11100101";
-        //System.out.println(data + "\n" + key);
+        System.out.println(data + "\n" + key);
     }
 
     private void generateDataWithKey() {
@@ -30,7 +30,7 @@ public class Transceiver {
         for (long i=0; i<lenOfKey-1; i++) {
             dataWithKey = dataWithKey + "0";
         }
-        //System.out.println(dataWithKey);
+        System.out.println(dataWithKey);
     }
 
     private void division() {
