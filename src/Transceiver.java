@@ -7,22 +7,34 @@ public class Transceiver {
     private String dataForDivision;
     private String dataWithCrc;
     private int lenOfKey;
+    private boolean userHasGivenData;
 
     public Transceiver(String key) {
         this.key = key;
         lenOfKey = key.length();
-        generateData();
+        userHasGivenData = false;
+    }
+
+    public Transceiver(String key, String data) {
+        this(key);
+        this.data = data;
+        userHasGivenData = true;
+    }
+
+    public String start() {
+        if (!userHasGivenData) {
+            generateData();
+        }
         generatedataForDivision();
         division();
+        return dataWithCrc;
     }
 
     private void generateData() {
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
-        //long randomData = ThreadLocalRandom.current().nextLong(Long.parseLong(key, 2), 100000 + 1);
-        //data = Long.toBinaryString(randomData);
-        data = "11100101";
-        //System.out.println(data + "\n" + key);
+        long randomData = ThreadLocalRandom.current().nextLong(Long.parseLong(key, 2), 100000 + 1);
+        data = Long.toBinaryString(randomData);
     }
 
     private void generatedataForDivision() {
@@ -30,7 +42,6 @@ public class Transceiver {
         for (long i=0; i<lenOfKey-1; i++) {
             dataForDivision = dataForDivision + "0";
         }
-        //System.out.println(dataForDivision);
     }
 
     private void division() {
@@ -47,9 +58,5 @@ public class Transceiver {
             }
         }
         dataWithCrc = data + dataForDivision;
-    }
-
-    public String getDataWithCrc() {
-        return dataWithCrc;
     }
 }
