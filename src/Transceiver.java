@@ -25,7 +25,7 @@ public class Transceiver {
         if (!userHasGivenData) {
             generateData();
         }
-        generatedataForDivision();
+        generateDataForDivision();
         division();
         return dataWithCrc;
     }
@@ -37,7 +37,7 @@ public class Transceiver {
         data = Long.toBinaryString(randomData);
     }
 
-    private void generatedataForDivision() {
+    private void generateDataForDivision() {
         dataForDivision = data;
         for (long i=0; i<lenOfKey-1; i++) {
             dataForDivision = dataForDivision + "0";
