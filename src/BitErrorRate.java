@@ -5,11 +5,12 @@ public class BitErrorRate {
     private String data;
     private boolean hasBitErrorRate;
 
-    public BitErrorRate(String data) {
-        this.data = data;
+    public BitErrorRate() {
         Random random = new Random();
         hasBitErrorRate = random.nextBoolean();
     }
+
+    public void setData(String data) {this.data = data;}
 
     public String start() {
         if (hasBitErrorRate) {

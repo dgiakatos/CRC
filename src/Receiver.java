@@ -4,11 +4,20 @@ public class Receiver {
     private String data;
     private int lenOfKey;
 
+    public Receiver() {}
+
     public Receiver(String key, String data) {
         this.key = key;
         this.data = data;
         lenOfKey = key.length();
     }
+
+    public void setKey(String key) {
+        this.key = key;
+        lenOfKey = key.length();
+    }
+
+    public void setData(String data) {this.data = data;}
 
     public String start() {
         division();

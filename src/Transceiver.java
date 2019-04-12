@@ -9,6 +9,8 @@ public class Transceiver {
     private int lenOfKey;
     private boolean userHasGivenData;
 
+    public Transceiver() {userHasGivenData = false;}
+
     public Transceiver(String key) {
         this.key = key;
         lenOfKey = key.length();
@@ -17,6 +19,16 @@ public class Transceiver {
 
     public Transceiver(String key, String data) {
         this(key);
+        this.data = data;
+        userHasGivenData = true;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+        lenOfKey = key.length();
+    }
+
+    public  void setData(String data) {
         this.data = data;
         userHasGivenData = true;
     }
