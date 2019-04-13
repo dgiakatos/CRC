@@ -10,7 +10,7 @@ public class Main {
         String binaryKey = keyboard.next();
         boolean isBinary = false;
         while (!isBinary) {
-            if ("0".equals(binaryKey.charAt(0)) || "0".equals(binaryKey.charAt(binaryKey.length() - 1)) || !binaryKey.matches("^[1][0*1*]*[1]")) {
+            if (!binaryKey.matches("^[1][0*1*]*[1]")) {
                 System.out.println("Wrong type. The key must be binary and the FIRST and the LAST element of the key must be 1. Please give the key again:");
                 binaryKey = keyboard.next();
             } else {
