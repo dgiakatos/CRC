@@ -17,8 +17,22 @@ public class Main {
                 isBinary = true;
             }
         }
+
         transceiver.setKey(binaryKey);
         BitErrorRate bitErrorRate = new BitErrorRate();
+        System.out.println("Give the possibility of error:");
+        double possibilityError = keyboard.nextDouble();
+        boolean isPossibility = false;
+        while (!isPossibility) {
+            if (possibilityError<0.0 || possibilityError>1.0) {
+                System.out.println("Wrong type. The possibility error must be from 0 to 1 (exp. 0.003). Please give the key again:");
+                possibilityError = keyboard.nextDouble();
+            } else {
+                isPossibility = true;
+            }
+        }
+
+        bitErrorRate.setPossibility(possibilityError);
         Receiver receiver = new Receiver();
         receiver.setKey(binaryKey);
         boolean goOn = true;

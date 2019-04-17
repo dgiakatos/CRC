@@ -1,33 +1,32 @@
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class BitErrorRate {
 
+    private double possibility;
     private String data;
-    private boolean hasBitErrorRate;
 
-    public BitErrorRate() {
-        Random random = new Random();
-        hasBitErrorRate = random.nextBoolean();
-    }
+    public BitErrorRate() {}
 
     public void setData(String data) {this.data = data;}
 
+    public void setPossibility(double possibility) {this.possibility = possibility;}
+
     public String start() {
-        if (hasBitErrorRate) {
-            generateBitErrorRate();
-        }
+        generateBitErrorRate();
         return data;
     }
 
     private void generateBitErrorRate() {
-        Random random = new Random();
-        Random errorBit = new Random();
-        int numberOfErrorBit = random.nextInt(data.length()+1);
-        int indexOfError;
-        for (int i=0; i<numberOfErrorBit; i++) {
-            indexOfError = random.nextInt(data.length());
-            data = data.substring(0, indexOfError) + String.valueOf(errorBit.nextInt(2)) +
-                    data.substring(indexOfError+1);
+        double randomError;
+        for (int i=0; i<data.length(); i++) {
+            randomError = ThreadLocalRandom.current().nextDouble(0.0, 1.0);
+            if (possibility<=randomError) {
+                if (data.charAt(i)=='0') {
+                    data = data.substring(0, i) + "1" + data.substring(i+1);
+                } else {
+                    data = data.substring(0, i) + "0" + data.substring(i+1);
+                }
+            }
         }
     }
 }
