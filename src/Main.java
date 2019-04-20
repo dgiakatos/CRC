@@ -18,6 +18,19 @@ public class Main {
             }
         }
 
+        System.out.println("Give the size of the data. The size must be positive integer number and equal or longer than the size of binary key:");
+        long binarySize = keyboard.nextLong();
+        boolean hasSize = false;
+        while (!hasSize) {
+            if (binarySize<binaryKey.length()) {
+                System.out.println("Wrong type. The size must be positive integer number and equal or longer than the size of binary key. Please give the key again:");
+                binarySize = keyboard.nextLong();
+            } else {
+                hasSize = true;
+            }
+        }
+        transceiver.setSize(binarySize);
+
         transceiver.setKey(binaryKey);
         BitErrorRate bitErrorRate = new BitErrorRate();
         System.out.println("Give the possibility of error:");
