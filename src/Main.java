@@ -44,32 +44,34 @@ public class Main {
                 isPossibility = true;
             }
         }
-
         bitErrorRate.setPossibility(possibilityError);
-        Receiver receiver = new Receiver();
-        receiver.setKey(binaryKey);
-        boolean goOn = true;
-        boolean hasAnswer;
-        while (goOn) {
-            bitErrorRate.setData(transceiver.start());
-            receiver.setData(bitErrorRate.start());
-            System.out.println(receiver.start());
-            System.out.println("Do you want to go on with the transmission or to stop? Give (Y) to go on or (N) to stop:");
-            String answer = keyboard.next();
-            hasAnswer = false;
-            while (!hasAnswer) {
-                if (answer.equals("Y") || answer.equals("N")) {
-                    hasAnswer = true;
-                } else {
-                    System.out.println("Wrong input. Please give again (Y) to go on or (N) to stop:");
-                    answer = keyboard.next();
-                }
-            }
-            if (answer.equals("Y")) {
-                goOn = true;
+
+        System.out.println("Give the number of messages you want to send:");
+        int numberOfMessages = keyboard.nextInt();
+        boolean hasAnswer = false;
+        while (!hasAnswer) {
+            if (numberOfMessages < 0) {
+                System.out.println("Wrong type. The number of messages must be positive. Please give the key again:");
+                numberOfMessages = keyboard.nextInt();
             } else {
-                goOn = false;
+                hasAnswer = true;
             }
         }
+
+        Receiver receiver = new Receiver();
+        receiver.setKey(binaryKey);
+        String data;
+        for (int i=0; i<numberOfMessages; i++) {
+            data = transceiver.start();
+            //System.err.println(data);
+            bitErrorRate.setData(data);
+            receiver.setData(bitErrorRate.start(), data);
+            receiver.start();
+        }
+
+        System.out.println("Statistics data:");
+        System.out.println("Rate of messages with errors on transmission: " + (receiver.getTotalErrorMessages()*100)/numberOfMessages + "%");
+        System.out.println("Rate of messages with errors detective by CRC: " + (receiver.getErrorMessagesCrc()*100)/numberOfMessages + "%");
+        System.out.println("Rate of messages with errors that they were not detective by CRC: " + (receiver.getErrorMessageCrcCorrect()*100)/numberOfMessages + "%");
     }
 }
