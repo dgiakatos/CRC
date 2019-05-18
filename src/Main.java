@@ -70,8 +70,8 @@ public class Main {
         }
 
         System.out.println("Statistics data:");
-        System.out.println("Rate of messages with errors on transmission: " + (receiver.getTotalErrorMessages()*100)/numberOfMessages + "%");
-        System.out.println("Rate of messages with errors detective by CRC: " + (receiver.getErrorMessagesCrc()*100)/numberOfMessages + "%");
-        System.out.println("Rate of messages with errors that they were not detective by CRC: " + (receiver.getErrorMessageCrcCorrect()*100)/numberOfMessages + "%");
+        System.out.println("Rate of messages with errors on transmission: " +  (float) (receiver.getTotalErrorMessages()*100)/numberOfMessages + "%");
+        System.out.println("Rate of messages with errors detective by CRC: " + (float) (receiver.getErrorMessagesCrc()*100)/numberOfMessages + "%");
+        System.out.println("Rate of messages with errors that they were not detective by CRC: " + (float) (receiver.getErrorMessageCrcCorrect()*100)/numberOfMessages + "%");
     }
 }
