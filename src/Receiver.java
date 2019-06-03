@@ -14,13 +14,6 @@ public class Receiver {
         this.errorMessageCrcCorrect = 0;
     }
 
-//    public Receiver(String key, String bitErrorData) {
-//        this();
-//        this.key = key;
-//        this.bitErrorData = bitErrorData;
-//        lenOfKey = key.length();
-//    }
-
     public void setKey(String key) {
         this.key = key;
         lenOfKey = key.length();
@@ -39,14 +32,9 @@ public class Receiver {
         division();
         if (bitErrorData.contains("1")) {
             errorMessagesCrc++;
-            //System.err.println("Wrong data!");
-            //return;
         } else if (hasError){
             errorMessageCrcCorrect++;
-            //System.err.println("Correct data with error!");
-            //return;
         }
-        //System.err.println("Correct data!");
     }
 
     public int getErrorMessagesCrc() {return errorMessagesCrc;}

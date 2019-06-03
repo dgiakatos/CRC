@@ -13,13 +13,11 @@ public class BitErrorRate {
 
     public String start() {
         generateBitErrorRate();
-        //System.err.println("error: "+data);
         return data;
     }
 
     private void generateBitErrorRate() {
         double randomError;
-        //System.err.println("er-data: "+data);
         for (int i=0; i<data.length(); i++) {
             randomError = ThreadLocalRandom.current().nextDouble(0.0, 1.0);
             if (possibility>=randomError) {

@@ -12,26 +12,9 @@ public class Transceiver {
 
     public Transceiver() {userHasGivenData = false;}
 
-    public Transceiver(String key) {
-        this.key = key;
-        lenOfKey = key.length();
-        userHasGivenData = false;
-    }
-
-    public Transceiver(String key, String data) {
-        this(key);
-        this.data = data;
-        userHasGivenData = true;
-    }
-
     public void setKey(String key) {
         this.key = key;
         lenOfKey = key.length();
-    }
-
-    public  void setData(String data) {
-        this.data = data;
-        userHasGivenData = true;
     }
 
     public void setSize(long size) {this.size = size;}
@@ -39,7 +22,6 @@ public class Transceiver {
     public String start() {
         if (!userHasGivenData) {
             generateData();
-            //System.err.println("data: "+data);
         }
         generateDataForDivision();
         division();
@@ -47,10 +29,6 @@ public class Transceiver {
     }
 
     private void generateData() {
-        // nextInt is normally exclusive of the top value,
-        // so add 1 to make it inclusive
-        /*long randomData = ThreadLocalRandom.current().nextLong(Long.parseLong(key, 2), 100000 + 1);
-        data = Long.toBinaryString(randomData);*/
         long randomData;
         data = "";
         for (long i=0; i<size; i++) {
