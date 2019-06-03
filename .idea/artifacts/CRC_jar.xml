@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CRC:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CRC_jar</output-path>
+    <root id="archive" name="CRC.jar">
+      <element id="module-output" name="CRC" />
+    </root>
+  </artifact>
+</component>
